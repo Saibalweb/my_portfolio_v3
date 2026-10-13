@@ -8,10 +8,10 @@ export function Hero() {
       <div className="hero-copy">
         <Badge className="availability"><span className="status-dot" />Available for Freelance Projects</Badge>
         <p className="hero-kicker">Hi, I'm Saibal <span>/</span> React Native & Full-Stack Developer</p>
-        <h1>I Build Mobile Apps & Custom Web Solutions<span className="text-primary">.</span></h1>
+        <h1>I Build Mobile Apps & Custom Web Solutions<span className="text-cta-text">.</span></h1>
         <p className="hero-description">I help startups, founders, and growing businesses turn ideas into reliable cross-platform mobile applications, fast MVPs, and custom web platforms — from intuitive interfaces to scalable backend infrastructure.</p>
         <div className="hero-actions">
-          <Button asChild size="lg"><a href="#contact">Let's Discuss Your Project <CalendarDays /></a></Button>
+          <Button asChild size="lg" variant="cta"><a href="#contact">Let's Discuss Your Project <CalendarDays /></a></Button>
           <Button asChild size="lg" variant="outline"><a href="#work">View My Work <ArrowDown /></a></Button>
         </div>
         <div className="hero-stack">{["React Native", "Next.js", "TypeScript", "Node.js", "MongoDB"].map(tech => <span key={tech}>{tech}</span>)}</div>

@@ -17,7 +17,7 @@ export function WorkSection() {
 
 export function ServicesSection() {
   return <section id="services" className="section section-surface"><div className="container">
-    <SectionHeading centered eyebrow="Capabilities & Value" title="What I Can Build for You" description="Helping businesses and founders build practical, reliable digital products with thoughtful engineering from the start." />
+    <SectionHeading centered eyebrow="Capabilities & Value" title={<>What I Can Build <span className="text-cta-text">for You</span></>} description="Helping businesses and founders build practical, reliable digital products with thoughtful engineering from the start." />
     <div className="services-grid">{services.map(service => <Card key={service.title} className="service-card"><CardHeader><span className="icon-box"><Icon name={service.icon} /></span><CardTitle>{service.title}</CardTitle><CardDescription>{service.description}</CardDescription></CardHeader><CardContent><p className="deliverables-label">Key deliverables</p><ul className="deliverables">{service.deliverables.map(item => <li key={item}><span />{item}</li>)}</ul></CardContent></Card>)}</div>
   </div></section>;
 }

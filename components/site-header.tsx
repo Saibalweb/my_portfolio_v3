@@ -27,7 +27,7 @@ export function SiteHeader() {
         {navigation.map(item => <a key={item.href} href={item.href} aria-current={active === item.href.slice(1) ? "location" : undefined}>{item.label}</a>)}
       </nav>
       <div className="header-actions">
-        <Button asChild size="sm" className="header-contact"><a href="#contact">Let's Talk <ArrowUpRight /></a></Button>
+        <Button asChild size="sm" variant="cta" className="header-contact"><a href="#contact">Let's Talk <ArrowUpRight /></a></Button>
         <Button variant="ghost" size="icon" aria-label={mounted && resolvedTheme === "dark" ? "Switch to light mode" : "Switch to dark mode"} onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}>
           {mounted && resolvedTheme === "dark" ? <Sun /> : <Moon />}
         </Button>

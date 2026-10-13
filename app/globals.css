@@ -20,6 +20,11 @@
   --muted-foreground: #64748b;
   --accent: #e2f3fc;
   --accent-foreground: #08647b;
+  --cta: #e11d48;
+  --cta-foreground: #ffffff;
+  --cta-text: #be123c;
+  --cta-soft: #fff1f2;
+  --cta-soft-foreground: #be123c;
   --border: #e2e8f0;
   --input: var(--border);
   --ring: var(--primary);
@@ -50,6 +55,11 @@
   --muted-foreground: #97a4b9;
   --accent: #173744;
   --accent-foreground: #82dff4;
+  --cta: #fb7185;
+  --cta-foreground: #450a0f;
+  --cta-text: #fda4af;
+  --cta-soft: #3b0a12;
+  --cta-soft-foreground: #fda4af;
   --border: #2e3745;
   --input: #364050;
   --surface: #121722;
@@ -75,6 +85,11 @@
   --color-muted-foreground: var(--muted-foreground);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
+  --color-cta: var(--cta);
+  --color-cta-foreground: var(--cta-foreground);
+  --color-cta-text: var(--cta-text);
+  --color-cta-soft: var(--cta-soft);
+  --color-cta-soft-foreground: var(--cta-soft-foreground);
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);

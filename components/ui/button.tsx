@@ -7,6 +7,7 @@ export const buttonVariants = cva("inline-flex items-center justify-center gap-2
   variants: {
     variant: {
       default: "bg-primary text-primary-foreground hover:bg-primary/90",
+      cta: "bg-cta text-cta-foreground hover:bg-cta/90 focus-visible:ring-cta",
       outline: "border border-input bg-card hover:bg-accent hover:text-accent-foreground",
       secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
       ghost: "hover:bg-accent hover:text-accent-foreground",
