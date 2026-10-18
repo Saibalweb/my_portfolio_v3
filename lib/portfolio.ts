@@ -9,13 +9,10 @@ export const profile = {
 };
 
 export const navigation = [
-  { label: "Home", href: "#home" },
-  { label: "Work", href: "#work" },
-  { label: "Services", href: "#services" },
-  { label: "Experience", href: "#experience" },
-  { label: "Process", href: "#process" },
-  { label: "Stack", href: "#stack" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", href: "/#home" },
+  { label: "Work", href: "/#work" },
+  { label: "Blog", href: "/blog" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 export const projects = [

@@ -1,0 +1,56 @@
+---
+title: "Minimal Navigation for a Developer Portfolio"
+description: "Why a hybrid routing model — anchors for the portfolio narrative, real routes for the blog — beats a single-page or fully multi-page approach."
+date: "2026-11-27"
+tags: ["Next.js", "Design", "MDX"]
+---
+
+A portfolio has two very different kinds of content, and treating them the same is where navigation gets cluttered.
+
+- **The portfolio itself** is one story. Home, work, services, experience, and contact only make sense read together.
+- **The blog** is a growing library. Every post needs its own address, title, and preview.
+
+## Choosing a routing model
+
+| Approach | Portfolio sections | Blog posts | Verdict |
+| --- | --- | --- | --- |
+| All anchors | Fast scroll | Not shareable, weak SEO | Avoid |
+| All separate pages | Extra reloads, lost context | Fine | Overkill |
+| Hybrid | Anchors on `/` | `/blog` and `/blog/[slug]` | Use this |
+
+The hybrid model keeps the single-page feel where it helps and gives the blog real URLs where it matters.
+
+## Wiring it up in the App Router
+
+With file-based MDX, the blog is fully static — no server rendering needed at request time.
+
+```ts
+export async function generateStaticParams() {
+  return getPostSlugs().map(slug => ({ slug }));
+}
+
+export async function generateMetadata({ params }: Props) {
+  const post = getPostBySlug(params.slug);
+  return post ? { title: post.title, description: post.description } : {};
+}
+```
+
+Rendering the post body is a single component:
+
+```tsx
+<MDXRemote source={post.content} options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }} />
+```
+
+## What GFM adds for free
+
+`remark-gfm` turns on the syntax most engineers already expect when writing Markdown:
+
+- tables with alignment
+- ~~strikethrough~~
+- task lists
+- autolinked URLs such as https://nextjs.org
+- footnotes[^1]
+
+That means no custom table component is needed — just a little CSS to match the site's tokens.
+
+[^1]: Footnotes are rendered automatically when GitHub Flavored Markdown is enabled.
