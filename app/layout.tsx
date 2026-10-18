@@ -1,8 +1,13 @@
 import type { Metadata } from "next";
+import { Geist, Inter, JetBrains_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import "./globals.css";
+
+const geist = Geist({ subsets: ["latin"], variable: "--font-geist", display: "swap" });
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
+const jetbrainsMono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-jetbrains", display: "swap" });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.saibal.dev"),
@@ -13,5 +18,5 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en" suppressHydrationWarning><body><ThemeProvider><a className="skip-link" href="#main-content">Skip to content</a><SiteHeader />{children}<SiteFooter /></ThemeProvider></body></html>;
+  return <html lang="en" suppressHydrationWarning className={`${geist.variable} ${inter.variable} ${jetbrainsMono.variable}`}><body><ThemeProvider><a className="skip-link" href="#main-content">Skip to content</a><SiteHeader />{children}<SiteFooter /></ThemeProvider></body></html>;
 }
