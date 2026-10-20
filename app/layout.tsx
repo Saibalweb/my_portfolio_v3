@@ -18,5 +18,5 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en" suppressHydrationWarning className={`${geist.variable} ${inter.variable} ${jetbrainsMono.variable}`}><body><ThemeProvider><a className="skip-link" href="#main-content">Skip to content</a><SiteHeader />{children}<SiteFooter /></ThemeProvider></body></html>;
+  return <html lang="en" suppressHydrationWarning className={`${geist.variable} ${inter.variable} ${jetbrainsMono.variable}`}><body><ThemeProvider><a className="fixed -top-20 left-4 z-[100] rounded-lg bg-primary px-5 py-3 text-primary-foreground focus:top-3" href="#main-content">Skip to content</a><SiteHeader />{children}<SiteFooter /></ThemeProvider></body></html>;
 }

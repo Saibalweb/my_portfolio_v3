@@ -1,0 +1,2 @@
+export const formInputClass =
+  "block w-full min-w-0 rounded-lg border border-input bg-card px-3.5 py-3 text-sm leading-normal text-foreground transition-[border-color,box-shadow] placeholder:text-muted-foreground placeholder:opacity-70 focus:border-primary focus:outline-none focus-visible:outline-none focus:shadow-[0_0_0_3px_color-mix(in_srgb,var(--primary)_12%,transparent)] max-compact:p-3 max-compact:text-base max-compact:placeholder:text-sm";

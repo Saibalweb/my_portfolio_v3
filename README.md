@@ -22,9 +22,9 @@ npm start
 ## Structure
 
 - `app/`: App Router page, layout, metadata, favicon, and global stylesheet.
-- `app/globals.css`: semantic light/dark theme tokens, shared component styles, and desktop-first responsive breakpoints. No component-specific color palettes.
+- `app/globals.css`: semantic light/dark theme tokens, base element defaults, and custom breakpoints. Layout and component styles use Tailwind utilities.
 - `components/ui/`: locally owned shadcn-style primitives using Radix, Tailwind, and class-variance-authority.
-- `components/`: portfolio sections, project previews, theme switching, navigation, and inquiry form.
+- `components/`: portfolio sections, project previews, theme switching, navigation, and inquiry form. Shared layout primitives live in `components/primitives.tsx`; MDX article styles are scoped in `components/post-body.module.css`.
 - `lib/portfolio.ts`: profile information and reusable arrays for projects, services, process, experience, and technologies.
 - `references/`: refreshed Stitch desktop HTML and source content retained for comparison.
 

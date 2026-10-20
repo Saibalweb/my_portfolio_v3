@@ -1,14 +1,17 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ArrowUpRight } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypePrettyCode from "rehype-pretty-code";
 import { rehypeTableWrapper } from "@/lib/rehype-table-wrapper";
+import { PostCard } from "@/components/post-card";
+import { Container } from "@/components/primitives";
 import { getAllPosts, getPostBySlug, getPostSlugs, formatPostDate } from "@/lib/posts";
+import styles from "@/components/post-body.module.css";
 
 export const dynamicParams = false;
 
@@ -37,19 +40,19 @@ export default async function BlogPostPage({ params }: Props) {
   const related = getAllPosts().filter(item => item.slug !== post.slug).slice(0, 2);
 
   return <main id="main-content">
-    <article className="section post-article">
-      <div className="container post-container">
-        <Link href="/blog" className="post-back"><ArrowLeft /> All posts</Link>
-        <header className="post-header">
-          <div className="post-meta">
+    <article className="w-full py-[100px] max-mobile:py-[76px] max-compact:py-[60px]">
+      <Container className="max-w-none compact:max-w-[760px] tablet:max-w-[clamp(720px,50vw,880px)] wide:max-w-[clamp(720px,50vw,880px)]">
+        <Link href="/blog" className="mb-[26px] inline-flex items-center gap-[7px] text-[13px] font-semibold text-muted-foreground hover:text-primary [&_svg]:size-[15px]"><ArrowLeft /> All posts</Link>
+        <header className="mb-[34px] border-b border-border pb-7">
+          <div className="flex items-center gap-2 text-[13px] tracking-[0.01em] text-muted-foreground">
             <time dateTime={post.date}>{formatPostDate(post.date)}</time>
             {post.readingTime && <><span aria-hidden="true">·</span><span>{post.readingTime}</span></>}
           </div>
-          <h1>{post.title}</h1>
-          {post.description && <p className="post-deck">{post.description}</p>}
-          {post.tags.length > 0 && <div className="post-tags">{post.tags.map(tag => <span key={tag}>{tag}</span>)}</div>}
+          <h1 className="mt-3 text-[clamp(30px,4vw,42px)] font-bold leading-[1.15] tracking-[-0.04em] max-compact:text-[31px]">{post.title}</h1>
+          {post.description && <p className="mt-4 text-[17px] leading-[1.7] text-muted-foreground max-compact:text-base">{post.description}</p>}
+          {post.tags.length > 0 && <div className="mt-[18px] flex flex-wrap gap-1.5">{post.tags.map(tag => <span key={tag} className="rounded-full bg-accent px-[9px] py-[3px] text-xs font-semibold tracking-[0.02em] text-accent-foreground">{tag}</span>)}</div>}
         </header>
-        <div className="post-body">
+        <div className={styles.postBody}>
           <MDXRemote
             source={post.content}
             options={{
@@ -69,18 +72,13 @@ export default async function BlogPostPage({ params }: Props) {
             }}
           />
         </div>
-        {related.length > 0 && <aside className="post-related">
-          <h2>Keep reading</h2>
-          <div className="post-list">
-            {related.map(item => <Link key={item.slug} href={`/blog/${item.slug}`} className="post-card">
-              <div className="post-meta"><time dateTime={item.date}>{formatPostDate(item.date)}</time>{item.readingTime && <><span aria-hidden="true">·</span><span>{item.readingTime}</span></>}</div>
-              <h3>{item.title}</h3>
-              {item.description && <p>{item.description}</p>}
-              <span className="post-read-more">Read post <ArrowUpRight /></span>
-            </Link>)}
+        {related.length > 0 && <aside className="mt-16 border-t border-border pt-9">
+          <h2 className="mb-5 text-[22px] font-semibold tracking-[-0.02em]">Keep reading</h2>
+          <div className="grid gap-5">
+            {related.map(item => <PostCard key={item.slug} post={item} showTags={false} />)}
           </div>
         </aside>}
-      </div>
+      </Container>
     </article>
   </main>;
 }

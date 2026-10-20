@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
 import { SectionHeading } from "@/components/section-heading";
-import { getAllPosts, formatPostDate } from "@/lib/posts";
+import { PostCard } from "@/components/post-card";
+import { Container } from "@/components/primitives";
+import { getAllPosts } from "@/lib/posts";
 
 export const metadata: Metadata = {
   title: "Blog — Saibal Kole",
@@ -13,28 +13,17 @@ export const metadata: Metadata = {
 export default function BlogPage() {
   const posts = getAllPosts();
   return <main id="main-content">
-    <section className="section blog-index">
-      <div className="container">
-        <SectionHeading eyebrow="Writing" title="Notes from building things" description="Practical write-ups on mobile and web engineering, interface decisions, and the details that make products hold up." />
+    <section className="w-full pb-[100px] pt-[76px] max-mobile:pb-[76px] max-mobile:pt-[76px] max-compact:pb-[60px] max-compact:pt-[54px]">
+      <Container>
+        <SectionHeading className="mx-auto max-w-[860px]" eyebrow="Writing" title="Notes from building things" description="Practical write-ups on mobile and web engineering, interface decisions, and the details that make products hold up." />
         {posts.length > 0 ? (
-          <div className="post-list">
-            {posts.map(post => (
-              <Link key={post.slug} href={`/blog/${post.slug}`} className="post-card">
-                <div className="post-meta">
-                  <time dateTime={post.date}>{formatPostDate(post.date)}</time>
-                  {post.readingTime && <><span aria-hidden="true">·</span><span>{post.readingTime}</span></>}
-                </div>
-                <h3>{post.title}</h3>
-                {post.description && <p>{post.description}</p>}
-                {post.tags.length > 0 && <div className="post-tags">{post.tags.map(tag => <span key={tag}>{tag}</span>)}</div>}
-                <span className="post-read-more">Read post <ArrowUpRight /></span>
-              </Link>
-            ))}
+          <div className="mx-auto grid max-w-[860px] gap-5">
+            {posts.map(post => <PostCard key={post.slug} post={post} />)}
           </div>
         ) : (
-          <p className="post-empty">No posts published yet — check back soon.</p>
+          <p className="text-muted-foreground">No posts published yet — check back soon.</p>
         )}
-      </div>
+      </Container>
     </section>
   </main>;
 }
